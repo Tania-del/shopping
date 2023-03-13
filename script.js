@@ -24,6 +24,17 @@ function onAddItemSubmit(e) {
     return;
   }
 
+  //Check for edit mode 
+  if(isEditMode)  {
+    const itemToEdit = itemList.querySelector('.edit-mode')
+    
+    removeItemFromStorage(itemToEdit.textContent)
+    itemToEdit.classList.remove('edit-mode')
+    itemToEdit.remove()
+
+    isEditMode = false;
+  }
+
   // Create item DOM element
   addItemToDom(newItem)
 
@@ -95,11 +106,11 @@ function addItemToStorage(item) {
     }
   }
 
+
   function setItemToEdit(item) {
     isEditMode = true;
 
     itemList.querySelectorAll('li').forEach((i) => i.classList.remove('edit-mode'))
-    
     item.classList.add('edit-mode')
     formBtn.innerHTML = '<i class="fa-solid fa-pen"></i>  Update Item'
     formBtn.style.backgroundColor = '#228B22'
@@ -160,6 +171,7 @@ function filterItems(e) {
 
 
 function checkUI() {
+  itemInput.value = ''
   const items = document.querySelectorAll('li')
 
 if(items.length === 0) {
@@ -169,6 +181,10 @@ if(items.length === 0) {
   clearBtn.style.display = 'block'
   itemFilter.style.display = 'block'
 }
+formBtn.innerHTML = '<iclass="fa-solid fa-plus"></i>  Add Item'
+formBtn.style.backgroundColor = '#333'
+
+isEditMode = false;
 }
 
 // Initialize app
