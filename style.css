@@ -28,11 +28,16 @@ header h1 {
   margin-left: 10px;
 }
 
+.edit-mode {
+color: #ccc;
+}
+
 .container {
   max-width: 500px;
   margin: 30px auto;
   padding: 20px;
 }
+
 
 /* Form & Input */
 .form-input {
